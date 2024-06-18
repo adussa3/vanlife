@@ -1,6 +1,8 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  // NOTE: this isn't necessary but by setting "node" to true gets rid of the 'process' is not defined eslint error
+  // Link: https://stackoverflow.com/questions/50894000/eslint-process-is-not-defined
+  env: { browser: true, node: true, es2020: true },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
