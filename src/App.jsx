@@ -16,9 +16,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Vans from "./pages/Vans";
-import VanDetail from "./pages/VanDetail";
+import Vans from "./pages/Vans/Vans";
+import VanDetail from "./pages/Vans/VanDetail";
 import Layout from "./layouts/Layout";
+import Dashboard from "./pages/Host/Dashboard";
+import Income from "./pages/Host/Income";
+import Reviews from "./pages/Host/Reviews";
+import HostLayout from "./layouts/HostLayout";
 
 function App() {
     return (
@@ -41,10 +45,17 @@ function App() {
                     component
                 */}
                 <Route element={<Layout />}>
-                    <Route path="/" element={<Home />} />
+                    <Route index element={<Home />} />
+                    <Route path="/host" element={<HostLayout />}>
+                        <Route index element={<Dashboard />} />
+                        <Route path="income" element={<Income />} />
+                        <Route path="reviews" element={<Reviews />} />
+                    </Route>
                     <Route path="/about" element={<About />} />
-                    <Route path="/vans" element={<Vans />} />
-                    <Route path="/vans/:vanId" element={<VanDetail />} />
+                    <Route path="/vans">
+                        <Route index element={<Vans />} />
+                        <Route path=":vanId" element={<VanDetail />} />
+                    </Route>
                 </Route>
             </Routes>
         </BrowserRouter>
