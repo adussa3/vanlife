@@ -24,7 +24,7 @@ export default function VanDetail() {
         },
         /*
             NOTE:
-            Even though this is't being used now, we could have a previous and a next button to show all the vans
+            Even though this isn't being used now, we could have a previous and a next button to show all the vans
             When we press the buttons the URL params will change and in this case, we want to get the current van
         */
         [vanId]
