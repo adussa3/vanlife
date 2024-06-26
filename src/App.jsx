@@ -47,15 +47,48 @@ function App() {
                 <Route element={<Layout />}>
                     <Route index element={<Home />} />
                     <Route path="/host" element={<HostLayout />}>
+                        {/*
+                            Index routes are used to display elements in the outlet of the Layout component
+                            which is the same route where the layout is defined at
+
+                            Basically, they're the  default component that fills up the <Outlet> componet in the layout
+                            when the route matches "/host"
+
+                            NOTE:
+                            The reason why we can't use path="/" is because React Router views it as an absolute path
+                        */}
                         <Route index element={<Dashboard />} />
+                        {/*
+                            NOTE:
+                            If we have a slash at the beginning of the path, React Router treats it as an absolute path
+                            It should really but used for and dedicated to the home page
+                            
+                            If we don't have a slash in the beginning of the path, React Router treats it as a relative path
+                            which is RELATIVE to the parent route - it appends the relative path on to the parent route
+                        */}
                         <Route path="income" element={<Income />} />
                         <Route path="reviews" element={<Reviews />} />
                     </Route>
                     <Route path="/about" element={<About />} />
-                    <Route path="/vans">
-                        <Route index element={<Vans />} />
-                        <Route path=":vanId" element={<VanDetail />} />
-                    </Route>
+                    {/*
+                        NOTE:
+                        we shouldn't nest the routes for "/vans" like this:
+
+                        <Route path="/vans">
+                            <Route index element={<Vans />} />
+                            <Route path=":vanId" element={<VanDetail />} />
+                        </Route>
+
+                        This is because none of these pages are sharing ui elements, there isn't necessarily a reason to
+                        nest a route for just the ":vanId" portion inside a nested route for vans
+
+                        Doing so would create a route with a path but no element, because as soon as we put an element in
+                        a parent route which needs to include an <Outlet> and because they're not sharing any UI, that
+                        parent component would be a layout route that only has <Outlet> and we end up with a whole extra
+                        component that isn't doing anything
+                    */}
+                    <Route path="vans" element={<Vans />} />
+                    <Route path="vans/:vanId" element={<VanDetail />} />
                 </Route>
             </Routes>
         </BrowserRouter>
