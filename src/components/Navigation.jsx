@@ -63,13 +63,22 @@ export default function Navigation() {
                 "/host" from beign active because the end doesn't match with the current route
                 ("" doesn't match with "income")
             */}
-            <NavLink to="/host" style={({ isActive }) => (isActive ? activeStyles : null)} end>
+            {/*
+                to="." refers to the current directory! It's the link to the route that we're currently inside of
+
+                to="" does NOT do the same thing! (according to ChatGPT)
+                Is generally interpreted as the "root" or the base URL of your application
+            */}
+            <NavLink to="." style={({ isActive }) => (isActive ? activeStyles : null)} end>
                 Dashboard
             </NavLink>
-            <NavLink to="/host/income" style={({ isActive }) => (isActive ? activeStyles : null)}>
+            <NavLink to="income" style={({ isActive }) => (isActive ? activeStyles : null)}>
                 Income
             </NavLink>
-            <NavLink to="/host/reviews" style={({ isActive }) => (isActive ? activeStyles : null)}>
+            <NavLink to="vans" style={({ isActive }) => (isActive ? activeStyles : null)}>
+                Vans
+            </NavLink>
+            <NavLink to="reviews" style={({ isActive }) => (isActive ? activeStyles : null)}>
                 Reviews
             </NavLink>
         </nav>
