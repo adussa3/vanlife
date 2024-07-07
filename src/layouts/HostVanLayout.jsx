@@ -140,7 +140,14 @@ export default function HostVanLayout() {
                                     Photos
                                 </NavLink>
                             </nav>
-                            <Outlet />
+                            {/*
+                                NOTE:
+                                <Outlet /> is just a context provider! Therefore, we can pass in context
+                                which can be accessed by all child routes
+
+                                The pages of the child routes can access <Outlet /> using useOutletContext()
+                            */}
+                            <Outlet context={{ hostVan }} />
                         </div>
                     </section>
                 </>
