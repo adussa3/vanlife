@@ -125,7 +125,7 @@ export default function Vans() {
                 It tells the Screen Reader exactly what shoulw be read out when it reads the content
                 that's wrapped inside the link
             */}
-            <Link to={`/vans/${van.id}`} aria-label={`View details for ${van.name} priced at $${van.price} per day`}>
+            <Link to={van.id} aria-label={`View details for ${van.name} priced at $${van.price} per day`}>
                 <img src={van.imageUrl} alt={`Image of ${van.name}`} />
                 <div className="van-info">
                     <p className="van-name">{van.name}</p>
